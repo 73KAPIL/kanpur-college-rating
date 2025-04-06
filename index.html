@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kanpur College Rating Platform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h1, h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    .notification {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      border-left: 5px solid #ffc107;
+      margin-bottom: 20px;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    select, input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .college-box {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    .college-box h4 {
+      margin: 0;
+      color: #007bff;
+      cursor: pointer;
+    }
+
+    .teacher-section {
+      margin-top: 15px;
+      padding-left: 10px;
+      display: none;
+    }
+
+    .teacher {
+      background: #eef6f9;
+      padding: 8px;
+      border-left: 4px solid #007bff;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
+
+    .teacher span {
+      font-weight: bold;
+    }
+
+    .complain-box {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #f1f8ff;
+      border-left: 5px solid #007bff;
+      border-radius: 10px;
+    }
+
+    .complain-box h3 {
+      margin-top: 0;
+      color: #007bff;
+    }
+
+    .leaderboard {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #e3fcec;
+      border-left: 5px solid #28a745;
+      border-radius: 10px;
+    }
+
+    .leaderboard h3 {
+      margin-top: 0;
+      color: #28a745;
+    }
+
+    .leaderboard ol {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Kanpur College Rating System (Real-Time)</h1>
+
+    <div class="notification">
+      ⚠️ ALERT: Your college's rating is dropping! Help improve it by submitting a rating now.
+    </div>
+
+    <form>
+      <label for="college">Select Your College</label>
+      <select id="college" required>
+        <option value="">-- Choose College --</option>
+        <option>IIT Kanpur</option>
+        <option>HBTU</option>
+        <option>CSJMU</option>
+        <option>Allenhouse Institute</option>
+        <option>PSIT</option>
+        <option>KIT</option>
+        <option>Axis Institute</option>
+        <option>VSICS</option>
+        <option>Dayanand Academy</option>
+        <option>Rama University</option>
+      </select>
+
+      <label for="rating">Rate Your College</label>
+      <select id="rating" required>
+        <option value="5">★★★★★ - Excellent</option>
+        <option value="4">★★★★☆ - Good</option>
+        <option value="3">★★★☆☆ - Average</option>
+        <option value="2">★★☆☆☆ - Poor</option>
+        <option value="1">★☆☆☆☆ - Very Poor</option>
+      </select>
+
+      <label for="experience">Anonymous Experience / Issues (Optional)</label>
+      <textarea id="experience" rows="4" placeholder="Your real experience, interview, complaints, environment..."></textarea>
+
+      <label for="proof">Proof Link (interview video, MMS, screenshot, etc.)</label>
+      <input type="url" id="proof" placeholder="Paste Google Drive or YouTube link" />
+
+      <button type="submit">Submit Rating</button>
+    </form>
+
+    <hr style="margin: 40px 0;">
+    <h3>📊 College Ratings & Best Teachers</h3>
+
+    <div id="colleges"></div>
+
+    <div class="leaderboard">
+      <h3>🏅 Top Rated Colleges This Season</h3>
+      <ol>
+        <li>IIT Kanpur</li>
+        <li>PSIT</li>
+        <li>HBTU</li>
+      </ol>
+    </div>
+
+    <div class="complain-box">
+      <h3>🛡️ Confidential Student Complaint Form</h3>
+      <p><strong>Note:</strong> Only higher authorities will see this. College ratings drop if retaliation happens post-complaint.</p>
+
+      <form>
+        <label for="complainCollege">Select College</label>
+        <select id="complainCollege">
+          <option value="">-- Choose College --</option>
+          <option>IIT Kanpur</option>
+          <option>HBTU</option>
+          <option>CSJMU</option>
+          <option>Allenhouse Institute</option>
+          <option>PSIT</option>
+          <option>KIT</option>
+          <option>Axis Institute</option>
+          <option>VSICS</option>
+          <option>Dayanand Academy</option>
+          <option>Rama University</option>
+        </select>
+
+        <label for="complainType">Complaint Type</label>
+        <select id="complainType">
+          <option>FOOD COMPLAIN</option>
+          <option>TEACHER COMPLAIN</option>
+          <option>STAFF COMPLAIN</option>
+          <option>TRANSPORT COMPLAIN</option>
+          <option>PLACEMENT CELL COMPLAIN</option>
+        </select>
+
+        <label for="complainDetails">Details (Confidential)</label>
+        <textarea id="complainDetails" rows="4" placeholder="Write your concern here..."></textarea>
+
+        <label for="complainProof">Upload Evidence (Drive link or File Upload)</label>
+        <input type="file" id="complainProof" accept="image/*,video/*,.pdf" />
+
+        <button type="submit">Submit Confidential Complaint</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const collegeData = {
+      "IIT Kanpur": ["Prof. Anil Sharma", "Dr. Meena Joshi", "Prof. Rakesh Verma", "Dr. Swati Gupta", "Prof. Manish Rao"],
+      "HBTU": ["Prof. Neeraj Yadav", "Dr. Anjali Verma", "Prof. Umesh Singh", "Dr. Ritu Sharma", "Prof. Nitin Saxena"],
+      "CSJMU": ["Prof. Arun Mishra", "Dr. Shikha Dubey", "Prof. Vipin Trivedi", "Dr. Sunita Chauhan", "Prof. Gaurav Sinha"],
+      "Allenhouse Institute": ["Prof. Meenal Raj", "Dr. Pawan Tiwari", "Prof. Kritika Yadav", "Dr. Aayush Bansal", "Prof. Divya Patel"],
+      "PSIT": ["Prof. Ankit Verma", "Dr. Preeti Singh", "Prof. Rahul Mishra", "Dr. Kajal Rawat", "Prof. Mohit Yadav"],
+      "KIT": ["Prof. Dheeraj Shukla", "Dr. Namrata Gupta", "Prof. Rajeev Singh", "Dr. Isha Rani", "Prof. Suraj Sinha"],
+      "Axis Institute": ["Prof. Sweta Tiwari", "Dr. Nishant Gupta", "Prof. Rekha Chaurasia", "Dr. Ayush Pandey", "Prof. Tarun Patel"],
+      "VSICS": ["Prof. Vinay Shukla", "Dr. Prerna Agarwal", "Prof. Lalit Singh", "Dr. Neha Mishra", "Prof. Bhaskar Gupta"],
+      "Dayanand Academy": ["Prof. Suman Verma", "Dr. Vishal Jain", "Prof. Kiran Pandey", "Dr. Shalini Singh", "Prof. Alok Tiwari"],
+      "Rama University": ["Prof. Raghav Srivastava", "Dr. Payal Tandon", "Prof. Shubham Dubey", "Dr. Seema Saxena", "Prof. Ashutosh Pandey"]
+    };
+
+    window.onload = () => {
+      const collegesDiv = document.getElementById("colleges");
+      Object.entries(collegeData).forEach(([college, teachers], index) => {
+        const id = `college${index}`;
+        const html = `
+          <div class="college-box">
+            <h4 onclick="toggleTeachers('${id}')">${college}</h4>
+            <div id="${id}" class="teacher-section">
+              <p><em>Top 5 Teachers - Student Rated (🏆 Best Teacher Award Eligible)</em></p>
+              ${teachers.map(t => `<div class='teacher'><span>${t}</span></div>`).join('')}
+            </div>
+          </div>
+        `;
+        collegesDiv.innerHTML += html;
+      });
+    };
+
+    function toggleTeachers(id) {
+      const section = document.getElementById(id);
+      section.style.display = (section.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
